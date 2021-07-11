@@ -4,6 +4,27 @@
 </head>
 <body class="center_objects">
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+<template>
+    <div>
+        <img src="{{url_for('static', filename='grafik/mountains-1412683.png')}}">
+        <h3 class="no_select">World</h3>
+        <div>1 From 10/n Save State:/n Game/File/Love</div>
+        <div>
+            <div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 7.47834L20.5217 5.83334L14 12.355L7.47837 5.83334L5.83337 7.47834L12.355 14L5.83337 20.5217L7.47837 22.1667L14 15.645L20.5217 22.1667L22.1667 20.5217L15.645 14L22.1667 7.47834Z" fill="black" fill-opacity="0.87"/>
+                </svg>
+                <div>Delete</div>
+            </div>
+            <div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 15.1667H15.1667V22.1667H12.8334V15.1667H5.83337V12.8333H12.8334V5.83334H15.1667V12.8333H22.1667V15.1667Z" fill="black" fill-opacity="0.87"/>
+                </svg>
+                <div>Load</div>
+            </div>
+        </div>
+    </div>
+</template>
 <div class="create_game_body center_objects shadow">
     <h2 class="no_select">Create Game</h2>
     <hr>
@@ -22,5 +43,13 @@
         <a class= "select_button button_text no_select shadow" style="font-size: 190%;">Select Game</a>
     </div>
 </div>
+<div id="LevelsDif">
+    <h2 class="no_select">Save Game Stats</h2>
+</div>
+<script>
+  var temp = document.getElementsByTagName("template")[0];
+  var clon = temp.content.cloneNode(true);
+  document.getElementById('LevelsDif').appendChild(clon);
+</script>
 </body>
 </html>
