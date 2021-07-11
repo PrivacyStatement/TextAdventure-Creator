@@ -1,0 +1,122 @@
+body {
+height: 100%;
+width: 100%;
+margin: 0;
+padding: 0;
+background: #FFFFFF;
+}
+
+h1 {
+ width: 100%;
+ position: fixed;
+ font-family: Julius Sans One;
+ font-size: 1800%;
+ margin: 5px;
+
+ line-height: 200px;
+ align-items: center;
+ text-align: center;
+ color: rgba(123, 97, 255, 0.81);
+}
+
+h2{
+ font-family: Julius Sans One;
+ font-size: 100%;
+ margin: 5px;
+ color: rgba(123, 97, 255, 0.81);
+}
+
+h3{
+ font-family: Julius Sans One;
+ font-size: 100%;
+ margin: 5px;
+ color: rgba(123, 97, 255, 0.81);
+ text-decoration-line: underline;
+}
+
+p{
+ font-family: Julius Sans One;
+ font-size: 100%;
+ margin: 5px;
+ color: rgba(123, 97, 255, 0.81);
+}
+
+.center_objects{
+ align-items: center;
+ text-align: center;
+}
+
+.button_text{
+ font-family: Julius Sans One;
+ font-style: normal;
+ font-weight: normal;
+ font-size: 72px;
+ line-height: 100px;
+ text-align: center;
+ color: #7B61FF;
+}
+
+.no_select{
+ -ms-user-select: None;
+ -moz-user-select: None;
+ -webkit-user-select: None;
+ user-select: None;
+}
+
+.grid_start{
+ position: fixed;
+ top: 50%;
+
+ width: 100%;
+ min-width: 500px;
+
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+
+ height: 335px;
+ color: rgba(123, 97, 255, 0.81);
+}
+
+.start_button {
+ text-decoration: none;
+ width: 35%;
+ height: 100px;
+ margin: 5px;
+
+ background: #FFFFFF;
+ border: 1px solid #E0E0EC;
+ box-sizing: border-box;
+ border-radius: 157.75px;
+}
+
+.create_game_body {
+ position: fixed;
+ margin: 10%;
+ width: 80%;
+ height: auto;
+}
+
+.pic_1 {
+object-fit: fill;
+border-radius: 8px;
+width: 94%;
+height: 20%;
+margin: 3%;
+}
+
+.shadow {
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+ }
+
+.select_button{
+ text-decoration: none;
+ width: 44%;
+ height: 100%;
+ margin: 3%;
+
+ background: #FFFFFF;
+ border: 1px solid #E0E0EC;
+ box-sizing: border-box;
+ border-radius: 157.75px;
+}
