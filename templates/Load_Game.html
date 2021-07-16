@@ -4,6 +4,7 @@
 </head>
 <body class="center_objects">
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Load_Game_Style.css') }}">
+<!--------------------------------------------------------------------------------------------------------------->
 <template>
     <div class="shadow template_body">
         <img class="pic_2" src="{{url_for('static', filename='grafik/mountains-1412683.png')}}">
@@ -27,6 +28,7 @@
         </div>
     </div>
 </template>
+<!--------------------------------------------------------------------------------------------------------------->
 <div class="create_game_body center_objects shadow">
     <h2 class="no_select">Create Game</h2>
     <hr>
@@ -41,13 +43,19 @@
             rm und Drang (1765 bis 1785) zuzuordnen. </p>
     </div>
     <div>
-        <a class= "select_button button_text no_select shadow" style="font-size: 190%;">Create Game</a>
+        <a class= "select_button button_text no_select shadow" id="Create_Game" style="font-size: 190%;">Create Game</a>
         <a class= "select_button button_text no_select shadow" style="font-size: 190%;">Select Game</a>
     </div>
 </div>
+<!--------------------------------------------------------------------------------------------------------------->
 <div id="LevelsDif" class="load_game_body">
     <h2 class="no_select">Save Game Stats</h2>
 </div>
+<!--------------------------------------------------------------------------------------------------------------->
+<div class="popup shadow">
+    popup
+</div>
+
 <script>
   for (let i=0; i<10; i++) {
     var temp = document.getElementsByTagName("template")[0];

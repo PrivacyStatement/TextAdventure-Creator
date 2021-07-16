@@ -77,13 +77,13 @@ margin: 3%;
 }
 
 .pic_2 {
-object-fit: fill;
-border-radius: 8px;
-width: 32%;
-height: 200px;
-margin: 3%;
-margin-top: 20px;
-margin-bottom: 20px;
+ object-fit: fill;
+ border-radius: 8px;
+ width: 32%;
+ height: 200px;
+ margin: 3%;
+ margin-top: 20px;
+ margin-bottom: 20px;
 }
 
 .shadow {
@@ -148,6 +148,24 @@ margin-bottom: 20px;
  margin-top: 10px;
  margin-bottom: 10px;
  line-height: 40px;
+}
+
+.popup{
+ visibility: hidden;
+ width: 80%;
+ max-width: 1000px;
+ position: fixed;
+ max-height: 600px;
+ height: 80%;
+ background-color: white;
+ border-radius: 8px;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+}
+
+#Create_Game:active {
+    visibility: hidden;
 }
 
 @media only screen and (min-width: 1200px){
