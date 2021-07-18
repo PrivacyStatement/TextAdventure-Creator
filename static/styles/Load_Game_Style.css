@@ -7,12 +7,6 @@ background: #FFFFFF;
 display: flex;
 }
 
-h2{
- font-family: Julius Sans One;
- font-size: 100%;
- margin: 5px;
-}
-
 h3{
  font-family: Julius Sans One;
  font-size: 100%;
@@ -34,6 +28,28 @@ p{
  font-size: 100%;
  margin: 5px;
  color: rgba(123, 97, 255, 0.81);
+}
+
+input {
+ width: 80%;
+ height: 23px;
+ border: none;
+ margin-top: 3%;
+
+ font-family: Julius Sans One;
+ font-size: 23px;
+ color: #444444;
+ }
+
+input:focus-visible {
+ outline-width: 0;
+ outline: none;
+}
+
+.create_game_title{
+ width: 90%;
+ margin: 5%;
+ margin-bottom: 3%;
 }
 
 .center_objects{
@@ -71,16 +87,15 @@ p{
 
 .create_game_body {
  margin: 7.5%;
- width: 35%;
- height: auto;
+ height: 80%;
+ width: 30%;
 }
 
 .pic_1 {
-object-fit: fill;
 border-radius: 8px;
 width: 94%;
-height: 20%;
 margin: 3%;
+margin-top: 6%;
 }
 
 .pic_2 {
@@ -135,6 +150,7 @@ margin: 3%;
  width: 30%;
  align-items: center;
  text-align: center;
+ cursor: pointer;
 }
 
 .button_load_delete_text{

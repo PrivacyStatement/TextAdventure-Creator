@@ -30,6 +30,7 @@ overflow-y: auto;
  align-items: center;
 
  height: 335px;
+ max-height: 50%;
  color: rgba(123, 97, 255, 0.81);
 }
 
