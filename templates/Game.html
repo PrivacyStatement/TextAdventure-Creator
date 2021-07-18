@@ -1,9 +1,75 @@
 <html>
 <head>
-<title>Watcher</title>
+<title>Text Adveture</title>
 </head>
 <body>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Game_Style.css') }}">
+
+<template id="Text">
+    <div class="story_field shadow center_objects">
+        <div style="height: 1px;"></div>
+        <h1 class="no_select">Ich bin eine Überschrift</h1>
+        <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
+        <div style="height: 1px;"></div>
+    </div>
+</template>
+
+<template id="TwoButtons">
+    <div class="story_field shadow center_objects">
+        <div style="height: 1px;"></div>
+        <h1 class="no_select">Ich bin eine Überschrift</h1>
+        <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
+        <div style="height: 80px; display: flex;flex-direction: row;">
+            <div class="Button1" style="width: 50%;">Ja</div>
+            <div class="Button2" style="width: 50%;">Nein</div>
+        </div>
+    </div>
+</template>
+
+<template id="ThreeButtons">
+    <div class="story_field shadow center_objects">
+        <div style="height: 1px;"></div>
+        <h1 class="no_select">Ich bin eine Überschrift</h1>
+        <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
+        <div style="height: 80px; display: flex;flex-direction: row;">
+            <div class="Button1" style="width: calc(100%/3);">Ja</div>
+            <div class="Button3" style="width: calc(100%/3);">Vileicht</div>
+            <div class="Button2" style="width: calc(100%/3);">Nein</div>
+        </div>
+    </div>
+</template>
+
+<template id="FourButtons">
+    <div class="story_field shadow center_objects">
+        <div style="height: 1px;"></div>
+        <h1 class="no_select">Ich bin eine Überschrift</h1>
+        <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
+        <div style="height: 80px; display: grid; grid-template-columns: 50% 50%; grid-template-rows: 50% 50%; ">
+            <div class="Button4" style="width: 100%; border-top-left-radius: 40px;">Ja</div>
+            <div class="Button4" style="width: 100%; border-top-right-radius: 40px;">Vileicht</div>
+            <div class="Button4" style="width: 100%; border-bottom-left-radius: 40px;">Neee</div>
+            <div class="Button4" style="width: 100%; border-bottom-right-radius: 40px;">Nein</div>
+        </div>
+    </div>
+</template>
+
+<template id="Fight">
+    <div class="story_field shadow center_objects">
+        <div style="height: 1px;"></div>
+        <h1 class="no_select">Ich bin eine Überschrift</h1>
+        <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
+        <div style="height: 80px; display: grid; grid-template-columns: 50% 50%; grid-template-rows: 50% 50%; ">
+            <div class="Button4" style="width: 100%; border-top-left-radius: 40px;">Ja</div>
+            <div class="Button4" style="width: 100%; border-top-right-radius: 40px;">Vileicht</div>
+            <div class="Button4" style="width: 100%; border-bottom-left-radius: 40px;">Neee</div>
+            <div class="Button4" style="width: 100%; border-bottom-right-radius: 40px;">Nein</div>
+        </div>
+    </div>
+</template>
+
+
+<div id="game_body"></div>
+<!----------------------------------------------------------------------------------------------------------------------->
 <div class="bottom_bar">
     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path transform="translate(10, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z" fill="black" fill-opacity="0.87"/>
@@ -18,5 +84,14 @@
         </svg>
     </div>
 </div>
+
+<script>
+  for (let i=0; i<20; i++) {
+    var temp = document.getElementsByTagName("template")[i%5];
+    var clon = temp.content.cloneNode(true);
+    document.getElementById('game_body').appendChild(clon);
+  }
+</script>
+
 </body>
 </html>

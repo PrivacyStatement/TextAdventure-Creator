@@ -2,9 +2,9 @@
 <head>
 <title>Text Adveture</title>
 </head>
-<body class="center_objects">
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Load_Game_Style.css') }}">
-<!--------------------------------------------------------------------------------------------------------------->
+<body>
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Load_Creator_Style.css') }}">
+
 <template>
     <div class="shadow template_body">
         <img class="pic_2" src="{{url_for('static', filename='grafik/mountains-1412683.png')}}">
@@ -18,7 +18,7 @@
                     </svg>
                     <div class="button_load_delete_text no_select">Delete</div>
                 </div>
-                <div style="margin-left: 3%;" class="button_load_delete" onclick="window.location='Game';">
+                <div style="margin-left: 3%;" class="button_load_delete" onclick="window.location='Creator';">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 15.1667H15.1667V22.1667H12.8334V15.1667H5.83337V12.8333H12.8334V5.83334H15.1667V12.8333H22.1667V15.1667Z" fill="black" fill-opacity="0.87"/>
                     </svg>

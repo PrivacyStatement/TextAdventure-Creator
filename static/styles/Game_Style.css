@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
 body {
 height: 100%;
 width: 100%;
@@ -46,6 +48,7 @@ background: #FFFFFF;
  position:absolute;
  top:-30px;
  right: calc(1% + 10px);
+ cursor: pointer;
 }
 
 .bottom_bar::before{
@@ -59,3 +62,81 @@ background: #FFFFFF;
     top:-40px;
     right:1%;
  }
+
+#game_body{
+ width: 100%;
+ height: calc(100% - 56px);
+ overflow-y: scroll;
+ scrollbar-width: thin;
+}
+
+.story_field{
+ width: calc(50% - 40px);
+ border-radius: 40px;
+ margin: 20px;
+ height: auto;
+}
+
+.story_field:nth-child(2n){
+ margin-left: calc(50% + 20px);
+}
+
+.Button1 {
+ height: 100%;
+ border-top-left-radius: 40px;
+ border-bottom-left-radius: 40px;
+ border: 1px solid #000000;
+
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 48px;
+ line-height: 80px;
+ text-align: center;
+}
+
+.Button2 {
+ height: 100%;
+ border-top-right-radius: 40px;
+ border-bottom-right-radius: 40px;
+ border: 1px solid #000000;
+
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 48px;
+ line-height: 80px;
+ text-align: center;
+}
+
+.Button3 {
+ height: 100%;
+ border: 1px solid #000000;
+
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 48px;
+ line-height: 80px;
+ text-align: center;
+}
+
+.Button4 {
+ height: 100%;
+ border: 1px solid #000000;
+
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 24px;
+ line-height: 40px;
+ text-align: center;
+}
+
+h1{
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 48px;
+ line-height: 52px;
+ text-align: center;
+}
+
+p{
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 18px;
+ line-height: 20px;
+ text-align: justify;
+ margin-left: 10px;
+ margin-right: 10px;
+}
