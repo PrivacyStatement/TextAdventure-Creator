@@ -40,23 +40,22 @@ background: #FFFFFF;
  cursor: pointer;
 }
 
+#tree_body{
+ width: 100%;
+ height: calc(100% - 56px);
+}
+
 .node {
-		cursor: pointer;
-	}
+ cursor: pointer;
+}
 
-	.node circle {
-	  fill: #fff;
-	  stroke: #7B61FF;
-	  stroke-width: 3px;
-	}
+.node text {
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 12px;
+}
 
-	.node text {
-	  font-family: 'Julius Sans One', sans-serif;
-	  font-size: 12px;
-	}
-
-	.link {
-	  fill: none;
-	  stroke: #ccc;
-	  stroke-width: 2px;
-	}
+.link {
+ fill: none;
+ stroke: #ccc;
+ stroke-width: 2px;
+}

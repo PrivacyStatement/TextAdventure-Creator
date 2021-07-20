@@ -5,10 +5,7 @@
 <body>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Creator_Style.css') }}">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-<script src="{{url_for('static', filename='Js/Creator.js')}}"></script>
-
-<div id="para1"></div>
+<div id="tree_body"></div>
 
 <div class="bottom_bar">
     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,5 +17,36 @@
     </svg>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+<script src="{{url_for('static', filename='Js/Creator.js')}}"></script>
+<script>
+document.querySelector('body').addEventListener("keydown", TasteGedrückt );
+var svg_tree = document.getElementById("svg_tree");
+
+  function TasteGedrückt (evt) {
+    switch (evt.key) {
+        case "+":
+            if (svg_tree.style.transform === ""){
+            svg_tree.style.transform = "scale(1.1)"
+            } else{
+            var scale_now = parseFloat(svg_tree.style.transform.split("(")[1].split(")")[0]) + 0.1;
+            svg_tree.style.transform = "scale(" + scale_now + ")"
+            }
+            break;
+        case "-":
+            if (svg_tree.style.transform === ""){
+            svg_tree.style.transform = "scale(0.9)"
+            } else{
+            var scale_now = parseFloat(svg_tree.style.transform.split("(")[1].split(")")[0]) - 0.1;
+                if (scale_now <= 0){
+                    svg_tree.style.transform = "scale(0.1)"
+                    } else{
+                    svg_tree.style.transform = "scale(" + scale_now + ")"
+                    }
+            }
+            break;
+    }
+  }
+</script>
 </body>
 </html>
