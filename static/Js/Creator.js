@@ -2,25 +2,25 @@
 var treeData = [
   {
     "name": "Top Level",
-    "story": "dsjoigjfdoigjfoiofigoifjiohj",
+    "ende": false,
     "children": [
       {
         "name": "Level 2: A",
-        "story": "dsjoigjfdoigjfoiofigoifjiohj",
+        "ende": false,
         "children": [
           {
             "name": "Son of A",
-            "story": "dsjoigjfdoigjfoiofigoifjiohj",
+            "ende": true,
           },
           {
             "name": "Daughter of A",
-            "story": "dsjoigjfdoigjfoiofigoifjiohj",
+            "ende": true,
           }
         ]
       },
       {
         "name": "Level 2: B",
-        "story": "dsjoigjfdoigjfoiofigoifjiohj",
+        "ende": true,
       }
     ]
   }
@@ -35,7 +35,7 @@ var margin = {top: 20, right: 120, bottom: 20, left: 120},
 	height = 500 - margin.top - margin.bottom;
 	
 var i = 0,
-	duration = 750,
+	duration = 700,
 	root;
 
 var tree = d3.layout.tree()
@@ -52,7 +52,7 @@ var svg = d3.select("#tree_body").append("svg")
 	.attr("id", "svg_tree")
 	.on("mousemove", positionieren)
   .append("g")
-	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+	  .attr("transform", "translate(" + margin.left + "," + margin.top + ") scale(1)")
     .attr("id", "svg_g");
 
 root = treeData[0];
@@ -79,9 +79,8 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
 	  .attr("class", "node")
 	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-	  .on("click", click)
-    .on("mouseover", function(d) { mouse_over_node = true })
-    .on("mouseout", function(d) { mouse_over_node = false });
+    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", !(d.ende) ? "visible" : "hidden");})
+    .on("mouseout", function(d) { mouse_over_node = false,this.childNodes[2].setAttribute("visibility", "hidden");});
 
   nodeEnter.append("rect")
 	  .attr("width", 10)
@@ -91,15 +90,20 @@ function update(source) {
       .style("fill", "#fff")
       .style("stroke", "#7B61FF")
 
-   nodeEnter.append("text")
+  nodeEnter.append("text")
 	  .attr("dy", ".35em")
-      .attr("width", 160)
-      .attr("height", 60)
-      .attr("transform", " translate(20,0)")
-	  .text(function(d) { return d.name + d.story; })
+    .attr("width", 160)
+    .attr("height", 60)
+    .attr("transform", " translate(20,0)")
+	  .text(function(d) { return d.name; })
 	  .style("fill-opacity", 1e-6);
-      
 
+  nodeEnter.append("circle")
+	  .attr("r", "20")
+    .attr("transform", " translate(200,-50)")
+	  .attr("visibility", "hidden")
+    .on("click", click)
+    .style("fill-opacity", 0);
 
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
@@ -117,6 +121,9 @@ function update(source) {
   nodeUpdate.select("text")
     .style("fill-opacity", 1);
 
+  nodeUpdate.select("circle")
+    .style("fill-opacity", 1);
+
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
 	  .duration(duration)
@@ -124,10 +131,15 @@ function update(source) {
 	  .remove();
 
   nodeExit.select("rect")
-       .style("fill-opacity", 1);
+    .style("fill-opacity", 1e-6)
+    .style("stroke", "#fff");
 
   nodeExit.select("text")
 	  .style("fill-opacity", 1e-6);
+
+  nodeExit.select("circle")
+    .duration(1)
+    .style("fill-opacity", 0);
 
   // Update the links…
   var link = svg.selectAll("path.link")
@@ -181,6 +193,7 @@ function positionieren()
         if (d3.event.buttons === 1 && mouse_over_node == false){
           var kreis= svg[0][0]
           var posTrans = kreis.getAttribute("transform").split("(")[1].split(")")[0].split(",")
+          var scale = parseFloat(kreis.getAttribute("transform").split("(")[2].split(")")[0])
           var posX= d3.event.clientX;
           var posY= d3.event.clientY;
 
@@ -189,7 +202,7 @@ function positionieren()
           }
 
           var vec_end = [parseFloat(posX) + parseFloat(vec_Maus[0]) , parseFloat(posY) + parseFloat(vec_Maus[1])]
-          kreis.setAttribute("transform","translate("+ vec_end[0] + "," + vec_end[1] +")");
+          kreis.setAttribute("transform","translate("+ vec_end[0] + "," + vec_end[1] +") scale(" + scale + ")");
           pos_mous = [posX, posY]
         } else if (d3.event.buttons === 0){
             vec_Maus = null

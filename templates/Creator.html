@@ -21,29 +21,23 @@
 <script src="{{url_for('static', filename='Js/Creator.js')}}"></script>
 <script>
 document.querySelector('body').addEventListener("keydown", TasteGedrückt );
-var svg_tree = document.getElementById("svg_tree");
+var svg_g = document.getElementById("svg_g");
 
   function TasteGedrückt (evt) {
     switch (evt.key) {
         case "+":
-            if (svg_tree.style.transform === ""){
-            svg_tree.style.transform = "scale(1.1)"
-            } else{
-            var scale_now = parseFloat(svg_tree.style.transform.split("(")[1].split(")")[0]) + 0.1;
-            svg_tree.style.transform = "scale(" + scale_now + ")"
-            }
+            var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+            var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
+            svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
             break;
         case "-":
-            if (svg_tree.style.transform === ""){
-            svg_tree.style.transform = "scale(0.9)"
-            } else{
-            var scale_now = parseFloat(svg_tree.style.transform.split("(")[1].split(")")[0]) - 0.1;
-                if (scale_now <= 0){
-                    svg_tree.style.transform = "scale(0.1)"
+            var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+            var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
+                if (scale <= 0.1){
+                    svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
                     } else{
-                    svg_tree.style.transform = "scale(" + scale_now + ")"
+                    svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
                     }
-            }
             break;
     }
   }

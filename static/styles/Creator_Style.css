@@ -47,11 +47,17 @@ background: #FFFFFF;
 
 .node {
  cursor: pointer;
+ -webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .3));
+ filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .3));
 }
 
 .node text {
  font-family: 'Julius Sans One', sans-serif;
  font-size: 12px;
+ -ms-user-select: None;
+ -moz-user-select: None;
+ -webkit-user-select: None;
+ user-select: None;
 }
 
 .link {
