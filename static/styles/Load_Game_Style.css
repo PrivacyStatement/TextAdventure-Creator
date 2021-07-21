@@ -179,19 +179,45 @@ margin-top: 6%;
 }
 
 .popup{
- visibility: hidden;
- width: 80%;
- max-width: 1000px;
+ width: 360px;
  position: fixed;
- max-height: 600px;
- height: 80%;
+ height: 112px;
  background-color: white;
  border-radius: 8px;
  left: 50%;
  top: 50%;
  transform: translate(-50%, -50%);
+ z-index: 20;
 }
 
-#Create_Game:active {
-    visibility: hidden;
+#delete_alert{
+ width: 100%;
+ position: fixed;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.6);
+ z-index: 10;
+}
+
+.delete_button{
+width: 69;
+height: 36;
+position: absolute;
+bottom: 7;
+text-align: center;
+font-family: 'Julius Sans One', sans-serif;
+font-size: 16;
+line-height: 200%;
+cursor: pointer;
+}
+
+.popup_delete_text{
+    width: 260;
+    height: 56;
+    position: absolute;
+    bottom: 44;
+    text-align: center;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 20;
+    left: 50;
+}
 }

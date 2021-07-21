@@ -79,7 +79,7 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
 	  .attr("class", "node")
 	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", !(d.ende) ? "visible" : "hidden");})
+    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", (!(d.ende) && (this.childNodes[2].style["fill-opacity"] === "1")) ? "visible" : "hidden");})
     .on("mouseout", function(d) { mouse_over_node = false,this.childNodes[2].setAttribute("visibility", "hidden");});
 
   nodeEnter.append("rect")

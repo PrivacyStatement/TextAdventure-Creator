@@ -6,13 +6,13 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Load_Game_Style.css') }}">
 <!--------------------------------------------------------------------------------------------------------------->
 <template>
-    <div class="shadow template_body">
+    <div class="shadow template_body" id="State_load">
         <img class="pic_2" src="{{url_for('static', filename='grafik/mountains-1412683.png')}}">
         <div class="template_text">
             <h4 class="no_select">World</h4>
-        <div class="info_text">1 From 10<br/> Save State:<br/> Game/File/Love</div>
+        <div class="info_text" id="desc"></div>
             <div class="load_delete_div">
-                <div class="button_load_delete">
+                <div class="button_load_delete"  onclick="delete_alert(this)">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 7.47834L20.5217 5.83334L14 12.355L7.47837 5.83334L5.83337 7.47834L12.355 14L5.83337 20.5217L7.47837 22.1667L14 15.645L20.5217 22.1667L22.1667 20.5217L15.645 14L22.1667 7.47834Z" fill="black" fill-opacity="0.87"/>
                     </svg>
@@ -47,7 +47,7 @@
             rm und Drang (1765 bis 1785) zuzuordnen. </p>
     </div>
     <div>
-        <a class= "select_button button_text no_select shadow" id="Create_Game" style="font-size: 190%;">Create Game</a>
+        <a class= "select_button button_text no_select shadow" style="font-size: 190%;">Create Game</a>
         <a class= "select_button button_text no_select shadow" style="font-size: 190%;">Select Game</a>
     </div>
 </div>
@@ -58,16 +58,57 @@
     </svg>
 </div>
 <!--------------------------------------------------------------------------------------------------------------->
-<div class="popup shadow">
-    popup
+<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert()">
+    <div class="popup shadow" id="alert_box">
+        <div class="popup_delete_text no_select">do you really want to delete The Save State</div>
+        <div>
+            <div class="delete_button no_select" style="left: 207px;">Delete</div>
+            <div class="delete_button no_select" style="left: 284px;" onclick="deactivate_delete_alert2()">Quit</div>
+        </div>
+    </div>
 </div>
+<!--------------------------------------------------------------------------------------------------------------->
 
 <script>
-  for (let i=0; i<10; i++) {
+  var Save_Stats = {{ Save_Stats | tojson}}
+  for (let i=0; i<Save_Stats.length; i++) {
     var temp = document.getElementsByTagName("template")[0];
+    temp.content.querySelectorAll("h4")[0].textContent = Save_Stats[i]["title"]
+    var source = "static/grafik/" + Save_Stats[i]["img"].toString()
+    temp.content.querySelectorAll("img")[0].src = source
+    temp.content.querySelectorAll("#desc")[0].textContent = Save_Stats[i]["des"]
     var clon = temp.content.cloneNode(true);
     document.getElementById('LevelsDif').appendChild(clon);
   }
+</script>
+<script>
+function delete_alert(b) {
+  var ele = document.getElementById("delete_alert");
+  ele.style.display = "inherit";
+}
+
+function deactivate_delete_alert(b) {
+  var ele = document.getElementById("delete_alert");
+  if (document.getElementById("alert_box").mouseIsOver == false){
+  ele.style.display = "none";}
+}
+
+function deactivate_delete_alert2(b) {
+  var ele = document.getElementById("delete_alert");
+  ele.style.display = "none";
+}
+
+window.onload = initDivMouseOver;
+function initDivMouseOver()   {
+   var div = document.getElementById("alert_box");
+   div.mouseIsOver = false;
+   div.onmouseover = function()   {
+      this.mouseIsOver = true;
+   };
+   div.onmouseout = function()   {
+      this.mouseIsOver = false;
+   }
+}
 </script>
 </body>
 </html>

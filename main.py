@@ -1,4 +1,6 @@
 from flask import Flask , render_template
+import os
+import json
 
 
 app = Flask(__name__)
@@ -9,7 +11,21 @@ def index():
 
 @app.route("/Load_Game")
 def Load():
-    return render_template('Load_Game.html')
+    #loads and return the files
+    def Save_Stats():
+        Save_Stats = []
+        files = os.listdir("Save_Games")
+        for i in files:
+            if i.split(".")[-1] == "json":
+                with open("Save_Games/" + str(i), 'r') as json_file:
+                    json_data = json.load(json_file)
+                    try:
+                        Save_Stats.append({"title": json_data["Settings"]["titel"], "img": json_data["Settings"]["img"],
+                                           "des": json_data["Settings"]["description"]})
+                    except (TypeError, KeyError):
+                        pass
+        return Save_Stats
+    return render_template('Load_Game.html', Save_Stats=Save_Stats())
 
 @app.route("/Game")
 def Game():
