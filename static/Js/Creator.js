@@ -1,30 +1,4 @@
-
-var treeData = [
-  {
-    "name": "Top Level",
-    "ende": false,
-    "children": [
-      {
-        "name": "Level 2: A",
-        "ende": false,
-        "children": [
-          {
-            "name": "Son of A",
-            "ende": true,
-          },
-          {
-            "name": "Daughter of A",
-            "ende": true,
-          }
-        ]
-      },
-      {
-        "name": "Level 2: B",
-        "ende": true,
-      }
-    ]
-  }
-];
+var treeData = tree1;
 
 //************** show if mous over a node	 *****************
 var mouse_over_node = false
@@ -78,8 +52,9 @@ function update(source) {
   // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("g")
 	  .attr("class", "node")
+    .on("click", function(d) {change_json(d.section)})
 	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", (!(d.ende) && (this.childNodes[2].style["fill-opacity"] === "1")) ? "visible" : "hidden");})
+    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", (!(d.ende) && (this.childNodes[2].style["fill-opacity"] == "1")) ? "visible" : "hidden");})
     .on("mouseout", function(d) { mouse_over_node = false,this.childNodes[2].setAttribute("visibility", "hidden");});
 
   nodeEnter.append("rect")
@@ -190,21 +165,25 @@ function click(d) {
 var vec_Maus = null
 function positionieren() 
       {
-        if (d3.event.buttons === 1 && mouse_over_node == false){
+        if (d3.event.buttons == 1 && mouse_over_node == false){
           var kreis= svg[0][0]
           var posTrans = kreis.getAttribute("transform").split("(")[1].split(")")[0].split(",")
           var scale = parseFloat(kreis.getAttribute("transform").split("(")[2].split(")")[0])
           var posX= d3.event.clientX;
           var posY= d3.event.clientY;
 
-          if (vec_Maus === null){
+          if (vec_Maus == null){
             vec_Maus = [parseFloat(posTrans[0]) - parseFloat(posX) ,parseFloat(posTrans[1]) - parseFloat(posY)]
           }
 
           var vec_end = [parseFloat(posX) + parseFloat(vec_Maus[0]) , parseFloat(posY) + parseFloat(vec_Maus[1])]
           kreis.setAttribute("transform","translate("+ vec_end[0] + "," + vec_end[1] +") scale(" + scale + ")");
           pos_mous = [posX, posY]
-        } else if (d3.event.buttons === 0){
+        } else if (d3.event.buttons == 0){
             vec_Maus = null
         }
       }
+
+function change_json(value){
+  console.log(value)
+}

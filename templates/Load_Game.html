@@ -62,8 +62,10 @@
     <div class="popup shadow" id="alert_box">
         <div class="popup_delete_text no_select">do you really want to delete The Save State</div>
         <div>
-            <div class="delete_button no_select" style="left: 207px;">Delete</div>
-            <div class="delete_button no_select" style="left: 284px;" onclick="deactivate_delete_alert2()">Quit</div>
+            <form method="post">
+                <button class="delete_button no_select" style="left: 207px;" name="Button" value="Delete, " type="submit" onsubmit='return false'>Delete</button>
+            </form>
+            <button class="delete_button no_select" style="left: 284px;" onclick="deactivate_delete_alert2()">Quit</button>
         </div>
     </div>
 </div>
