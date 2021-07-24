@@ -1,7 +1,11 @@
 var treeData = tree1;
+var json_data = json;
 
 //************** show if mous over a node	 *****************
-var mouse_over_node = false
+var mouse_over_node = false;
+
+//************** show if mous over a cirvle	 *****************
+var mouse_over_circle = false;
 
 // ************** Generate the tree diagram	 *****************
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
@@ -16,8 +20,8 @@ var tree = d3.layout.tree()
 	.size([height, width]);
 
 var diagonal = d3.svg.diagonal()
-    .source(function(d) { return {"x":d.source.x, "y":(d.source.y)}; }) 
-    .target(function(d) { return {"x":(d.target.x), "y":d.target.y - 200}; })
+  .source(function(d) { return {"x":d.source.x, "y":(d.source.y)}; }) 
+  .target(function(d) { return {"x":(d.target.x), "y":d.target.y - 200}; })
 	.projection(function(d) { return [d.y + 200, d.x]; })
 
 var svg = d3.select("#tree_body").append("svg")
@@ -44,6 +48,7 @@ function update(source) {
 
   // Normalize for fixed-depth.
   nodes.forEach(function(d) { d.y = d.depth * 380; });
+  nodes.forEach(function(d) { d.x = d.x * 2});
 
   // Update the nodes…
   var node = svg.selectAll("g.node")
@@ -54,16 +59,22 @@ function update(source) {
 	  .attr("class", "node")
     .on("click", function(d) {change_json(d.section)})
 	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-    .on("mouseover", function(d) { mouse_over_node = true,this.childNodes[2].setAttribute("visibility", (!(d.ende) && (this.childNodes[2].style["fill-opacity"] == "1")) ? "visible" : "hidden");})
-    .on("mouseout", function(d) { mouse_over_node = false,this.childNodes[2].setAttribute("visibility", "hidden");});
+    .on("mouseover", function(d) { mouse_over_node = true,
+    this.childNodes[2].style["fill-opacity"] = 1,
+    this.childNodes[2].style["visibility"] = "unset",
+    console.log(!this.childNodes[2].getAttribute("data-animation"),!(d.ende)),
+    this.childNodes[2].style["animation"] = ((!(d.ende) && this.childNodes[2].getAttribute("data-animation") == false) ? "circle 2s" : "none");})
+    .on("mouseout", function(d) { mouse_over_node = false,
+    this.childNodes[2].style["visibility"] = "hidden",
+    this.childNodes[2].style["animation"] = "circle_del 2s 1";});
 
   nodeEnter.append("rect")
 	  .attr("width", 10)
-      .attr("height", 100)
-      .attr("transform", "translate(0,-50)")
-      .attr("class", "rect_node")
-      .style("fill", "#fff")
-      .style("stroke", "#7B61FF")
+    .attr("height", 100)
+    .attr("transform", "translate(0,-50)")
+    .attr("class", "rect_node")
+    .style("fill", "#fff")
+    .style("stroke", "#7B61FF");
 
   nodeEnter.append("text")
 	  .attr("dy", ".35em")
@@ -77,7 +88,10 @@ function update(source) {
 	  .attr("r", "20")
     .attr("transform", " translate(200,-50)")
 	  .attr("visibility", "hidden")
+    .attr("data-animation", true)
     .on("click", click)
+    .on("mouseover", function(d) { mouse_over_circle = true;})
+    .on("mouseout", function(d) { mouse_over_circle = false;})
     .style("fill-opacity", 0);
 
   // Transition nodes to their new position.
@@ -97,7 +111,8 @@ function update(source) {
     .style("fill-opacity", 1);
 
   nodeUpdate.select("circle")
-    .style("fill-opacity", 1);
+    .style("fill-opacity", 1)
+    .attr("data-animation", false);
 
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
@@ -113,8 +128,7 @@ function update(source) {
 	  .style("fill-opacity", 1e-6);
 
   nodeExit.select("circle")
-    .duration(1)
-    .style("fill-opacity", 0);
+    .attr("data-animation", true);
 
   // Update the links…
   var link = svg.selectAll("path.link")
@@ -184,6 +198,31 @@ function positionieren()
         }
       }
 
+// Zoom with + and -
+document.querySelector('body').addEventListener("keydown", TasteGedrückt );
+var svg_g = document.getElementById("svg_g");
+      
+function TasteGedrückt (evt) {
+  switch (evt.key) {
+    case "+":
+      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
+      svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
+      break;
+    case "-":
+      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
+      if (scale <= 0.1){
+        svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
+        } else{
+          svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
+        }
+      break;
+        }
+      }
+
 function change_json(value){
-  console.log(value)
+  if (mouse_over_circle != true){
+    delete_alert()
+  }
 }

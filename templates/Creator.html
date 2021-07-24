@@ -4,46 +4,74 @@
 </head>
 <body>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Creator_Style.css') }}">
-
+<!--------------------------------------------------------------------------------------------------------------->
+<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert()">
+    <div class="popup shadow" id="alert_box">
+        <div style="display: flex; flex-direction: row; height:94%; margin: 5px; margin-bottom: 2%; margin-top: 2%; ">
+            <div style="display: flex; flex-direction: column; height: 100%; width: 60%;">
+                <input type="text" placeholder="Title" style="margin: 5px; width: calc(100% - 10px); padding: 3px; font-size: 45px;">
+                <textarea placeholder="Story" style="height: 50%; margin: 5px; width: calc(100% - 10px); padding: 3px; resize: none; font-size: 20px;"></textarea>
+                <div style="margin: 5px; height: calc(50% - 43px); border-width: 1px; border-style: solid; border-color: #999;"></div>
+            </div>
+            <div style="width: 40%; height: 100%;">
+                <div style="width: calc(80% - 10px); height: 57px; margin: 5px; margin-left: calc(10% + 5px); display: flex;">
+                    <button class="story_typ_button" style="background-color: rgba(186,133,251,0.12); color:7B61FF; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">Text</button>
+                    <button class="story_typ_button">Fight</button>
+                    <button class="story_typ_button">Questions</button>
+                    <button class="story_typ_button">End</button>
+                    <button class="story_typ_button" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000; border-top-right-radius: 4px; border-bottom-right-radius: 4px;">Win</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------------------------------->
 <div id="tree_body"></div>
-
+<!--------------------------------------------------------------------------------------------------------------->
 <div class="bottom_bar">
     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path transform="translate(10, 4)" fill-rule="evenodd" clip-rule="evenodd" d="M2 4C3.1 4 4 3.1 4 2C4 0.9 3.1 0 2 0C0.9 0 0 0.9 0 2C0 3.1 0.9 4 2 4ZM2 6C0.9 6 0 6.9 0 8C0 9.1 0.9 10 2 10C3.1 10 4 9.1 4 8C4 6.9 3.1 6 2 6ZM2 12C0.9 12 0 12.9 0 14C0 15.1 0.9 16 2 16C3.1 16 4 15.1 4 14C4 12.9 3.1 12 2 12Z" fill="black" fill-opacity="0.87"/>
     </svg>
-
     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4 8H8V4H4V8ZM10 20H14V16H10V20ZM4 20H8V16H4V20ZM4 14H8V10H4V14ZM10 14H14V10H10V14ZM16 4V8H20V4H16ZM10 8H14V4H10V8ZM16 14H20V10H16V14ZM16 20H20V16H16V20Z" fill="black" fill-opacity="0.87"/>
     </svg>
 </div>
-
+<!--------------------------------------------------------------------------------------------------------------->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script type="text/javascript">
     var tree1 = {{ treeData | tojson}}
+    var json = {{ json_data | tojson}}
 </script>
 <script src="{{url_for('static', filename='Js/Creator.js')}}"></script>
 <script>
-document.querySelector('body').addEventListener("keydown", TasteGedrückt );
-var svg_g = document.getElementById("svg_g");
+function delete_alert() {
+  var ele = document.getElementById("delete_alert");
+  ele.style.display = "inherit";
+}
 
-  function TasteGedrückt (evt) {
-    switch (evt.key) {
-        case "+":
-            var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-            var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
-            svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-            break;
-        case "-":
-            var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-            var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
-                if (scale <= 0.1){
-                    svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
-                    } else{
-                    svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-                    }
-            break;
-    }
-  }
+function deactivate_delete_alert(b) {
+  var ele = document.getElementById("delete_alert");
+  if (document.getElementById("alert_box").mouseIsOver == false){
+  ele.style.display = "none";}
+}
+
+function deactivate_delete_alert2(b) {
+  var ele = document.getElementById("delete_alert");
+  ele.style.display = "none";
+}
+
+window.onload = initDivMouseOver;
+function initDivMouseOver()   {
+   var div = document.getElementById("alert_box");
+   div.mouseIsOver = false;
+   div.onmouseover = function()   {
+      this.mouseIsOver = true;
+   };
+   div.onmouseout = function()   {
+      this.mouseIsOver = false;
+   }
+}
 </script>
+<!--------------------------------------------------------------------------------------------------------------->
 </body>
 </html>
