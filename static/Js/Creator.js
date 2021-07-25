@@ -1,5 +1,6 @@
 var treeData = tree1;
 var json_data = json;
+console.log(treeData)
 
 //************** show if mous over a node	 *****************
 var mouse_over_node = false;
@@ -68,6 +69,7 @@ function update(source) {
     .attr("transform", "translate(0,-50)")
     .attr("class", "rect_node")
     .style("fill", "#fff")
+    .on("click", function(d) { console.log(d.ende)})
     .style("stroke", "#7B61FF");
 
   nodeEnter.append("text")
@@ -77,16 +79,18 @@ function update(source) {
     .attr("transform", " translate(20,0)")
 	  .text(function(d) { return d.name; })
 	  .style("fill-opacity", 1e-6);
-
+  
   nodeEnter.append("circle")
-	  .attr("r", "20")
-    .attr("transform", " translate(200,-50)")
-	  .attr("visibility", "hidden")
+    .attr("transform", "translate(200,-50)")
+	  .attr("stroke", "#000")
+    .attr("fill", "#fff")
+    .attr("r", "20")
     .on("click", click)
     .on("mouseover", function(d) { mouse_over_circle = true;})
     .on("mouseout", function(d) { mouse_over_circle = false;})
-    .style("fill-opacity", 0);
-
+    .attr("visibility", "hidden")
+    .attr("class", function(d) { return !d.ende ? "circle_animation" : "unset"})
+  
   // Transition nodes to their new position.
   var nodeUpdate = node.transition()
 	  .duration(duration)
@@ -104,7 +108,6 @@ function update(source) {
     .style("fill-opacity", 1);
 
   nodeUpdate.select("circle")
-    .style("fill-opacity", 1);
 
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
@@ -186,29 +189,6 @@ function positionieren()
           pos_mous = [posX, posY]
         } else if (d3.event.buttons == 0){
             vec_Maus = null
-        }
-      }
-
-// Zoom with + and -
-document.querySelector('body').addEventListener("keydown", TasteGedrückt );
-var svg_g = document.getElementById("svg_g");
-      
-function TasteGedrückt (evt) {
-  switch (evt.key) {
-    case "+":
-      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
-      svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-      break;
-    case "-":
-      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
-      if (scale <= 0.1){
-        svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
-        } else{
-          svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-        }
-      break;
         }
       }
 
