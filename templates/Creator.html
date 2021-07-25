@@ -5,21 +5,33 @@
 <body>
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/Creator_Style.css') }}">
 <!--------------------------------------------------------------------------------------------------------------->
-<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert()">
+<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert(event, this)">
     <div class="popup shadow" id="alert_box">
-        <div style="display: flex; flex-direction: row; height:94%; margin: 5px; margin-bottom: 2%; margin-top: 2%; ">
-            <div style="display: flex; flex-direction: column; height: 100%; width: 60%;">
-                <input type="text" placeholder="Title" style="margin: 5px; width: calc(100% - 10px); padding: 3px; font-size: 45px;">
-                <textarea placeholder="Story" style="height: 50%; margin: 5px; width: calc(100% - 10px); padding: 3px; resize: none; font-size: 20px;"></textarea>
-                <div style="margin: 5px; height: calc(50% - 43px); border-width: 1px; border-style: solid; border-color: #999;"></div>
+        <div class="story_settings">
+            <div class="story_settings_Frame" style="width: 60%;">
+                <input type="text" placeholder="Title" class="title_input">
+                <textarea placeholder="Story" class="story_input"></textarea>
+                <div class="extra_settings"></div>
             </div>
-            <div style="width: 40%; height: 100%;">
+            <div class="story_settings_Frame" style="width: 40%;">
                 <div style="width: calc(80% - 10px); height: 57px; margin: 5px; margin-left: calc(10% + 5px); display: flex;">
                     <button class="story_typ_button" style="background-color: rgba(186,133,251,0.12); color:7B61FF; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">Text</button>
                     <button class="story_typ_button">Fight</button>
                     <button class="story_typ_button">Questions</button>
                     <button class="story_typ_button">End</button>
                     <button class="story_typ_button" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000; border-top-right-radius: 4px; border-bottom-right-radius: 4px;">Win</button>
+                </div>
+                <div>
+                    <div>
+                        <h1>Answer 1</h1>
+                        <input type="text" placeholder="Title" style="margin: 5px; width: calc(100% - 10px); padding: 3px; font-size: 45px;">
+                        <select name="cars" id="cars">
+                          <option value="volvo">Volvo</option>
+                          <option value="saab">Saab</option>
+                          <option value="mercedes">Mercedes</option>
+                          <option value="audi">Audi</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,27 +61,18 @@ function delete_alert() {
   ele.style.display = "inherit";
 }
 
-function deactivate_delete_alert(b) {
+function deactivate_delete_alert(event, element) {
+   if (event.target != element) {
+    event.stopPropagation();
+    return;
+  }
   var ele = document.getElementById("delete_alert");
-  if (document.getElementById("alert_box").mouseIsOver == false){
-  ele.style.display = "none";}
+  ele.style.display = "none";
 }
 
 function deactivate_delete_alert2(b) {
   var ele = document.getElementById("delete_alert");
   ele.style.display = "none";
-}
-
-window.onload = initDivMouseOver;
-function initDivMouseOver()   {
-   var div = document.getElementById("alert_box");
-   div.mouseIsOver = false;
-   div.onmouseover = function()   {
-      this.mouseIsOver = true;
-   };
-   div.onmouseout = function()   {
-      this.mouseIsOver = false;
-   }
 }
 </script>
 <!--------------------------------------------------------------------------------------------------------------->

@@ -86,24 +86,6 @@ background: #FFFFFF;
  z-index: 10;
 }
 
-textarea, input{
- border-width: 1px;
- border-style: solid;
- border-color: #999;
- font-family: 'Julius Sans One', sans-serif;
- color: #444444;
-}
-
-textarea:focus, input:focus{
-    outline: 0;
-    outline: none;
-    -moz-appearance:none;
-    outline:0px none transparent;
-    border-style: solid;
-    border-color: #000;
-    border-width: 1px;
-}
-
 .story_typ_button{
  height: 100%;
  width: calc(100% / 5);
@@ -139,4 +121,73 @@ fill-opacity: 1;
 fill-opacity: 0;
 visibility: hidden;
 }
+}
+
+.node:hover > .circle_animation {
+ fill-opacity: 1;
+ visibility: unset;
+ animation: 2s ease 0s 1 normal forwards running circle;
+}
+
+.circle_animation {
+ visibility: hidden;
+ fill-opacity: 0;
+ animation: 2s ease 0s 1 normal forwards running circle_del;
+ }
+
+.story_settings {
+ display: flex;
+ flex-direction: row;
+ height: 96%;
+ margin: 5px;
+ margin-bottom: 2%;
+ margin-top: 2%;
+}
+
+.story_settings_Frame{
+ display: flex;
+ flex-direction: column;
+ height: 100%;
+}
+
+.title_input{
+ margin: 5px;
+ width: calc(100% - 10px);
+ padding: 3px;
+ font-size: 45px;
+}
+
+.story_input{
+ height: 50%;
+ margin: 5px;
+ width: calc(100% - 10px);
+ padding: 3px;
+ resize: none;
+ font-size: 20px;
+}
+
+.extra_settings{
+ margin: 5px;
+ height: calc(50% - 43px);
+ border-width: 1px;
+ border-style: solid;
+ border-color: #999;
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+    outline: none;
+    -moz-appearance:none;
+    outline:0px none transparent;
+    border-style: solid;
+    border-color: #000;
+    border-width: 1px;
+}
+
+textarea, input{
+ border-width: 1px;
+ border-style: solid;
+ border-color: #999;
+ font-family: 'Julius Sans One', sans-serif;
+ color: #444444;
 }

@@ -59,14 +59,8 @@ function update(source) {
 	  .attr("class", "node")
     .on("click", function(d) {change_json(d.section)})
 	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-    .on("mouseover", function(d) { mouse_over_node = true,
-    this.childNodes[2].style["fill-opacity"] = 1,
-    this.childNodes[2].style["visibility"] = "unset",
-    console.log(!this.childNodes[2].getAttribute("data-animation"),!(d.ende)),
-    this.childNodes[2].style["animation"] = ((!(d.ende) && this.childNodes[2].getAttribute("data-animation") == false) ? "circle 2s" : "none");})
-    .on("mouseout", function(d) { mouse_over_node = false,
-    this.childNodes[2].style["visibility"] = "hidden",
-    this.childNodes[2].style["animation"] = "circle_del 2s 1";});
+    .on("mouseover", function(d) { mouse_over_node = true})
+    .on("mouseout", function(d) { mouse_over_node = false});
 
   nodeEnter.append("rect")
 	  .attr("width", 10)
@@ -88,7 +82,6 @@ function update(source) {
 	  .attr("r", "20")
     .attr("transform", " translate(200,-50)")
 	  .attr("visibility", "hidden")
-    .attr("data-animation", true)
     .on("click", click)
     .on("mouseover", function(d) { mouse_over_circle = true;})
     .on("mouseout", function(d) { mouse_over_circle = false;})
@@ -111,8 +104,7 @@ function update(source) {
     .style("fill-opacity", 1);
 
   nodeUpdate.select("circle")
-    .style("fill-opacity", 1)
-    .attr("data-animation", false);
+    .style("fill-opacity", 1);
 
   // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
@@ -128,7 +120,6 @@ function update(source) {
 	  .style("fill-opacity", 1e-6);
 
   nodeExit.select("circle")
-    .attr("data-animation", true);
 
   // Update the links…
   var link = svg.selectAll("path.link")

@@ -58,7 +58,7 @@
     </svg>
 </div>
 <!--------------------------------------------------------------------------------------------------------------->
-<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert()">
+<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert(event, this)">
     <div class="popup shadow" id="alert_box">
         <div class="popup_delete_text no_select">do you really want to delete The Save State</div>
         <div>
@@ -89,27 +89,18 @@ function delete_alert(b) {
   ele.style.display = "inherit";
 }
 
-function deactivate_delete_alert(b) {
+function deactivate_delete_alert(event, element) {
+   if (event.target != element) {
+    event.stopPropagation();
+    return;
+  }
   var ele = document.getElementById("delete_alert");
-  if (document.getElementById("alert_box").mouseIsOver == false){
-  ele.style.display = "none";}
+  ele.style.display = "none";
 }
 
 function deactivate_delete_alert2(b) {
   var ele = document.getElementById("delete_alert");
   ele.style.display = "none";
-}
-
-window.onload = initDivMouseOver;
-function initDivMouseOver()   {
-   var div = document.getElementById("alert_box");
-   div.mouseIsOver = false;
-   div.onmouseover = function()   {
-      this.mouseIsOver = true;
-   };
-   div.onmouseout = function()   {
-      this.mouseIsOver = false;
-   }
 }
 </script>
 </body>
