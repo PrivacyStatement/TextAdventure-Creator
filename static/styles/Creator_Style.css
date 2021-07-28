@@ -76,6 +76,7 @@ background: #FFFFFF;
  top: 50%;
  transform: translate(-50%, -50%);
  z-index: 20;
+ overflow: auto;
 }
 
 #delete_alert{
@@ -123,6 +124,7 @@ background: #FFFFFF;
     ". . .";
  height: 100%;
  width: 100%;
+ min-height: 530px;
 }
 
 .title_input{
@@ -153,9 +155,13 @@ background: #FFFFFF;
  width: calc(100% - 12px);
  height: calc(100% - 12px);
  border: 1px #000 solid;
+ display: grid;
+ grid-template-columns: 30% 10% 30% 30%;
+ grid-template-rows: 25% 25% 25% 25%;
+ grid-template-areas: ". . ." ". . ." ". . .";
 }
 
-textarea:focus, input:focus{
+textarea:focus, .input:focus{
     outline: 0;
     outline: none;
     -moz-appearance:none;
@@ -187,11 +193,14 @@ h1{
 }
 
 .answer_div{
+ width: 100%;
  margin: auto;
  display: grid;
  grid-template-columns: 70% 30%;
  grid-template-rows: 50% 50%;
  gap: 0px 9px; grid-template-areas: '. .' '. .';
+ margin-left: 5px;
+ width: 97%;
 }
 
 .answer_input{

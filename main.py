@@ -1,4 +1,4 @@
-from flask import Flask , render_template, request
+from flask import Flask , render_template, request, redirect
 import os
 import json
 import copy
@@ -22,16 +22,24 @@ def Load():
                     json_data = json.load(json_file)
                     try:
                         Save_Stats.append({"title": json_data["Settings"]["titel"], "img": json_data["Settings"]["img"],
-                                           "des": json_data["Settings"]["description"]})
+                                           "des": json_data["Settings"]["description"], "location": i})
                     except (TypeError, KeyError):
                         pass
         return Save_Stats
 
     return render_template('Load_Game.html', Save_Stats=Save_Stats())
 
-@app.route("/Game")
+@app.route("/Game", methods=['GET', 'POST'])
 def Game():
-    return render_template('Game.html')
+    if request.method == 'POST':
+        try:
+            with open(f"Save_Games/{request.form['file']}", 'r') as json_file:
+                json_data = json.load(json_file)
+        except:
+            return redirect("/Load_Game")
+    else:
+        return redirect("/Load_Game")
+    return render_template('Game.html', json_data=json_data)
 
 @app.route("/Load_Creator")
 def Load2():

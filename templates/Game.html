@@ -19,9 +19,9 @@
         <div style="height: 1px;"></div>
         <h1 class="no_select">Ich bin eine Überschrift</h1>
         <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
-        <div style="height: 80px; display: flex;flex-direction: row;">
-            <div class="Button1" style="width: 50%;">Ja</div>
-            <div class="Button2" style="width: 50%;">Nein</div>
+        <div style="height: 80px; display: flex;flex-direction: row; cursor: pointer;">
+            <div id="TwoButton1" class="Button1" style="width: 50%;">Ja</div>
+            <div id="TwoButton2" class="Button2" style="width: 50%;">Nein</div>
         </div>
     </div>
 </template>
@@ -31,10 +31,10 @@
         <div style="height: 1px;"></div>
         <h1 class="no_select">Ich bin eine Überschrift</h1>
         <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
-        <div style="height: 80px; display: flex;flex-direction: row;">
-            <div class="Button1" style="width: calc(100%/3);">Ja</div>
-            <div class="Button3" style="width: calc(100%/3);">Vileicht</div>
-            <div class="Button2" style="width: calc(100%/3);">Nein</div>
+        <div style="height: 80px; display: flex;flex-direction: row; cursor: pointer;">
+            <div id="ThreeButton1" class="Button1" style="width: calc(100%/3);">Ja</div>
+            <div id="ThreeButton2" class="Button3" style="width: calc(100%/3);">Vileicht</div>
+            <div id="ThreeButton3" class="Button2" style="width: calc(100%/3);">Nein</div>
         </div>
     </div>
 </template>
@@ -44,11 +44,11 @@
         <div style="height: 1px;"></div>
         <h1 class="no_select">Ich bin eine Überschrift</h1>
         <p class="no_select">Goethe stammte aus einer angesehenen bürgerlichen Familie; sein Großvater mütterlicherseits war als Stadtschultheiß höchster Justizbeamter der Stadt Frankfurt, sein Vater Doktor der Rechte und Kaiserlicher Rat. Er und seine Schwester Cornelia erfuhren eine aufwendige Ausbildung durch Hauslehrer. Dem Wunsch seines Vaters folgend, studierte Goethe in Leipzig und Straßburg Rechtswissenschaft und war danach als Advokat in Wetzlar und Frankfurt tätig. Gleichzeitig folgte er seiner Neigung zur Dichtkunst. Die ersten Anerkennungen in der Welt der Literatur erzielte er 1773 mit dem Drama Götz von Berlichingen, das ihm nationalen Erfolg eintrug, und 1774 mit dem Briefroman Die Leiden des jungen Werther, dem er sogar europäischen Erfolg verdankte. Beide Werke sind der literarischen Strömung des Sturm und Drang (1765 bis 1785) zuzuordnen. </p>
-        <div style="height: 80px; display: grid; grid-template-columns: 50% 50%; grid-template-rows: 50% 50%; ">
-            <div class="Button4" style="width: 100%; border-top-left-radius: 40px;">Ja</div>
-            <div class="Button4" style="width: 100%; border-top-right-radius: 40px;">Vileicht</div>
-            <div class="Button4" style="width: 100%; border-bottom-left-radius: 40px;">Neee</div>
-            <div class="Button4" style="width: 100%; border-bottom-right-radius: 40px;">Nein</div>
+        <div style="height: 80px; display: grid; grid-template-columns: 50% 50%; grid-template-rows: 50% 50%; cursor: pointer;">
+            <div id="FourButton1" class="Button4" style="width: 100%; border-top-left-radius: 40px;">Ja</div>
+            <div id="FourButton2" class="Button4" style="width: 100%; border-top-right-radius: 40px;">Vileicht</div>
+            <div id="FourButton3" class="Button4" style="width: 100%; border-bottom-left-radius: 40px;">Neee</div>
+            <div id="FourButton4" class="Button4" style="width: 100%; border-bottom-right-radius: 40px;">Nein</div>
         </div>
     </div>
 </template>
@@ -78,7 +78,7 @@
     <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4 8H8V4H4V8ZM10 20H14V16H10V20ZM4 20H8V16H4V20ZM4 14H8V10H4V14ZM10 14H14V10H10V14ZM16 4V8H20V4H16ZM10 8H14V4H10V8ZM16 14H20V10H16V14ZM16 20H20V16H16V20Z" fill="black" fill-opacity="0.87"/>
     </svg>
-    <div class="new_field_button">
+    <div id="NextButton" class="new_field_button">
         <svg style="width: 50px; transform: translate(5px,5px);}" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 15.1667H15.1667V22.1667H12.8334V15.1667H5.83337V12.8333H12.8334V5.83334H15.1667V12.8333H22.1667V15.1667Z" fill="black" fill-opacity="0.87"/>
         </svg>
@@ -86,12 +86,9 @@
 </div>
 
 <script>
-  for (let i=0; i<20; i++) {
-    var temp = document.getElementsByTagName("template")[i%5];
-    var clon = temp.content.cloneNode(true);
-    document.getElementById('game_body').appendChild(clon);
-  }
+  var GameSave = {{ json_data | tojson}}
 </script>
+<script src="{{url_for('static', filename='Js/Game.js')}}"></script>
 
 </body>
 </html>

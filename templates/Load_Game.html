@@ -18,7 +18,7 @@
                     </svg>
                     <div class="button_load_delete_text no_select">Delete</div>
                 </div>
-                <div style="margin-left: 3%;" class="button_load_delete" onclick="window.location='Game';">
+                <div id="Load" style="margin-left: 3%;" class="button_load_delete">
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M22.1667 15.1667H15.1667V22.1667H12.8334V15.1667H5.83337V12.8333H12.8334V5.83334H15.1667V12.8333H22.1667V15.1667Z" fill="black" fill-opacity="0.87"/>
                     </svg>
@@ -73,35 +73,7 @@
 
 <script>
   var Save_Stats = {{ Save_Stats | tojson}}
-  for (let i=0; i<Save_Stats.length; i++) {
-    var temp = document.getElementsByTagName("template")[0];
-    temp.content.querySelectorAll("h4")[0].textContent = Save_Stats[i]["title"]
-    var source = "static/grafik/" + Save_Stats[i]["img"].toString()
-    temp.content.querySelectorAll("img")[0].src = source
-    temp.content.querySelectorAll("#desc")[0].textContent = Save_Stats[i]["des"]
-    var clon = temp.content.cloneNode(true);
-    document.getElementById('LevelsDif').appendChild(clon);
-  }
 </script>
-<script>
-function delete_alert(b) {
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "inherit";
-}
-
-function deactivate_delete_alert(event, element) {
-   if (event.target != element) {
-    event.stopPropagation();
-    return;
-  }
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "none";
-}
-
-function deactivate_delete_alert2(b) {
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "none";
-}
-</script>
+<script src="{{url_for('static', filename='Js/Load_Game.js')}}"></script>
 </body>
 </html>

@@ -1,6 +1,4 @@
 var treeData = tree1;
-var json_data = json;
-console.log(treeData)
 
 //************** show if mous over a node	 *****************
 var mouse_over_node = false;
@@ -69,7 +67,6 @@ function update(source) {
     .attr("transform", "translate(0,-50)")
     .attr("class", "rect_node")
     .style("fill", "#fff")
-    .on("click", function(d) { console.log(d.ende)})
     .style("stroke", "#7B61FF");
 
   nodeEnter.append("text")
@@ -194,6 +191,29 @@ function positionieren()
 
 function change_json(value){
   if (mouse_over_circle != true){
-    delete_alert()
+    delete_alert(value)
   }
 }
+
+// Zoom with + and -
+document.querySelector('body').addEventListener("keydown", TasteGedrückt );
+var svg_g = document.getElementById("svg_g");
+
+function TasteGedrückt (evt) {
+  switch (evt.key) {
+    case "+":
+      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
+      svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
+      break;
+    case "-":
+      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
+      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
+      if (scale <= 0.1){
+        svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
+        } else{
+          svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
+        }
+      break;
+        }
+      }

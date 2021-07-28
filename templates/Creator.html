@@ -9,43 +9,64 @@
     <div class="popup shadow" id="alert_box">
         <div class="story_settings">
 
-            <input type="text" placeholder="Title" class="title_input">
-            <textarea placeholder="Story" class="story_input"></textarea>
-            <div class="extra_settings"></div>
+            <input id="Title_input" type="text" placeholder="Title" class="title_input input">
+            <textarea id="Story_input" placeholder="Story" class="story_input"></textarea>
 
+            <div class="extra_settings">
+                <select style="">
+                    <option value="none">none</option>
+                </select>
+                <input type="checkbox" style="grid-column: 4; grid-row: 1;">
+                <div style="grid-column: 3/5; grid-row: 2/5; background-color: #444;"></div>
+                <select style="grid-column: 1 ;grid-row: 2;">
+                    <option value="none">none</option>
+                </select>
+                <div style="grid-column: 1 ;grid-row: 3;">
+                    <label for="XP">XP:</label>
+                    <input type="number" id="XP" min="0" max="100" placeholder="50XP" class="input">
+                </div>
+                <div style="grid-column: 1 ;grid-row: 4;">
+                    <label for="random">rendom in %:</label>
+                    <input type="number" id="random" min="0" max="100" placeholder="100%" class="input">
+                </div>
+                <label for="Spring0_input">Go to:</label>
+                <select id="Spring0_input">
+                    <option value="none">none</option>
+                </select>
+            </div>
             <div class="buttons_div">
-                <button class="story_typ_button" style="background-color: rgba(186,133,251,0.12); color:7B61FF; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">Text</button>
-                <button class="story_typ_button">Fight</button>
-                <button class="story_typ_button">Questions</button>
-                <button class="story_typ_button">End</button>
-                <button class="story_typ_button" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000; border-top-right-radius: 4px; border-bottom-right-radius: 4px;">Win</button>
+                <button onclick="type_button(0)" class="story_typ_button" style="background-color: rgba(186,133,251,0.12); color:#7B61FF; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">Text</button>
+                <button onclick="type_button(1)" class="story_typ_button">Fight</button>
+                <button onclick="type_button(2)" class="story_typ_button">Questions</button>
+                <button onclick="type_button(3)" class="story_typ_button">End</button>
+                <button onclick="type_button(4)" class="story_typ_button" style="border-right-width: 1px; border-right-style: solid; border-right-color: #000; border-top-right-radius: 4px; border-bottom-right-radius: 4px;">Win</button>
             </div>
             <div class="answer_frame">
                 <div class="answer_div">
                     <h1 class="no_select">Answer 1</h1>
-                    <input class="answer_input" type="text" placeholder="Text Sample">
-                    <select style=" grid-column: 2 ;grid-row: 2;">
+                    <input id="Answer1_input" class="answer_input input" type="text" placeholder="Text Sample">
+                    <select id="Spring1_input" style=" grid-column: 2/3 ;grid-row: 2;">
                         <option value="none">none</option>
                     </select>
                 </div>
                 <div class="answer_div">
                     <h1 class="no_select">Answer 2</h1>
-                    <input class="answer_input" type="text" placeholder="Text Sample">
-                    <select style=" grid-column: 2 ;grid-row: 2;">
+                    <input id="Answer2_input" class="answer_input input" type="text" placeholder="Text Sample">
+                    <select id="Spring2_input" style=" grid-column: 2 ;grid-row: 2;">
                         <option value="none">none</option>
                     </select>
                 </div>
                 <div class="answer_div">
                     <h1 class="no_select">Answer 3</h1>
-                    <input class="answer_input" type="text" placeholder="Text Sample">
-                    <select style=" grid-column: 2 ;grid-row: 2;">
+                    <input id="Answer3_input" class="answer_input input" type="text" placeholder="Text Sample">
+                    <select id="Spring3_input" style=" grid-column: 2 ;grid-row: 2;">
                         <option value="none">none</option>
                     </select>
                 </div>
                 <div class="answer_div">
                     <h1 class="no_select">Answer 4</h1>
-                    <input class="answer_input" type="text" placeholder="Text Sample">
-                    <select style=" grid-column: 2 ;grid-row: 2;">
+                    <input id="Answer4_input" class="answer_input input" type="text" placeholder="Text Sample">
+                    <select id="Spring4_input" style=" grid-column: 2 ;grid-row: 2;">
                         <option value="none">none</option>
                     </select>
                 </div>
@@ -70,50 +91,8 @@
     var tree1 = {{ treeData | tojson}}
     var json = {{ json_data | tojson}}
 </script>
-<script src="{{url_for('static', filename='Js/Creator.js')}}"></script>
-<script>
-function delete_alert() {
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "inherit";
-}
-
-function deactivate_delete_alert(event, element) {
-   if (event.target != element) {
-    event.stopPropagation();
-    return;
-  }
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "none";
-}
-
-function deactivate_delete_alert2(b) {
-  var ele = document.getElementById("delete_alert");
-  ele.style.display = "none";
-}
-</script>
-<script>
-// Zoom with + and -
-document.querySelector('body').addEventListener("keydown", TasteGedrückt );
-var svg_g = document.getElementById("svg_g");
-
-function TasteGedrückt (evt) {
-  switch (evt.key) {
-    case "+":
-      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) + 0.1;
-      svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-      break;
-    case "-":
-      var posTrans = svg_g.getAttribute("transform").split("(")[1].split(")")[0].split(",");
-      var scale = parseFloat(svg_g.getAttribute("transform").split("(")[2].split(")")[0]) - 0.1;
-      if (scale <= 0.1){
-        svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(0.1)");
-        } else{
-          svg_g.setAttribute("transform","translate("+ posTrans[0] + "," + posTrans[1] +") scale(" + scale + ")");
-        }
-      break;
-        }
-      }</script>
+<script src="{{url_for('static', filename='Js/Creator_functions.js')}}"></script>
+<script src="{{url_for('static', filename='Js/Creator_Diagram.js')}}"></script>
 <!--------------------------------------------------------------------------------------------------------------->
 </body>
 </html>
