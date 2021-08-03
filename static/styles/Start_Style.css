@@ -40,12 +40,25 @@ overflow-y: auto;
  min-width: 300px;
  height: 100px;
  margin: 5px;
+ transition: background 0.8s;
 
  background: #FFFFFF;
+ background-position: center;
  border: 1px solid #E0E0EC;
  box-sizing: border-box;
  border-radius: 157.75px;
  display: inline-flex;
+}
+
+.start_button:hover{
+ background: #f0f0f0 radial-gradient(circle, transparent 1%, #f0f0f0 1%) center/15000%;
+}
+
+.start_button:active {
+  transition: background 0s;
+  background-color: #d0d0d0;
+  background-size: 100%;
+  transition: background 0s;
 }
 
 .shadow {

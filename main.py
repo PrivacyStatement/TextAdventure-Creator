@@ -3,7 +3,6 @@ import os
 import json
 import copy
 
-
 app = Flask(__name__)
 
 @app.route("/")
