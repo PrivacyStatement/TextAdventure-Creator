@@ -1,4 +1,4 @@
-from flask import Flask , render_template, request, redirect
+from flask import Flask , render_template, request, redirect, jsonify
 import os
 import json
 import copy
@@ -80,5 +80,19 @@ def Creator():
 
     return render_template('Creator.html', treeData=treeData, json_data=json_data)
 
-app.run(host= "0.0.0.0", port=5000)
+@app.route("/Delete", methods=['GET','POST'])
+def delete():
+    try:
+        if request.method == 'POST':
+            delete_file_name = str(request.get_json(force=True)["delete"]).split("/")[-1].split("\\")[-1].split(":")[-1]
+            if delete_file_name.split(".")[-1] == "json":
+                os.remove(f"Save_Games\\{delete_file_name}")
+            else:
+                return jsonify(success=False, false_file_suffix=True)
+    except FileNotFoundError:
+        return jsonify(success=False, exist=False)
+    except:
+        return jsonify(success=False)
+    return jsonify(success=True)
 
+app.run(host= "0.0.0.0", port=5000)

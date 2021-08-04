@@ -13,7 +13,7 @@
             <h4 class="no_select">World</h4>
             <div class="info_text no_select" id="desc"></div>
             <div class="load_delete_div">
-                <svg onclick="delete_alert(this)" width="111" height="28" viewBox="0 0 111 28" fill="none">
+                <svg id="Delete" width="111" height="28" viewBox="0 0 111 28" fill="none">
                 <g filter="url(#filter0_i)">
                 <rect width="111" height="28" fill="white"/>
                 <rect width="111" height="28" fill="white"/>
@@ -96,19 +96,14 @@
     </svg>
 </div>
 <!--------------------------------------------------------------------------------------------------------------->
-<div id="delete_alert" style="display: none;" onclick="deactivate_delete_alert(event, this)">
+<div id="delete_alert" style="display: none;" onclick="deactivate_alert(event, this)">
     <div class="popup shadow" id="alert_box">
         <div class="popup_delete_text no_select">do you really want to delete The Save State</div>
-        <div>
-            <form method="post">
-                <button class="delete_button no_select" style="left: 207px;" name="Button" value="Delete, " type="submit" onsubmit='return false'>Delete</button>
-            </form>
-            <button class="delete_button no_select" style="left: 284px;" onclick="deactivate_delete_alert(event, this)">Quit</button>
-        </div>
+        <div id="FinalDelete" class="delete_button no_select" style="left: 207px;">Delete</div>
+        <div class="delete_button no_select" style="left: 284px;" onclick="deactivate_alert(event, this)">Quit</div>
     </div>
 </div>
 <!--------------------------------------------------------------------------------------------------------------->
-
 <script>
   var Save_Stats = {{ Save_Stats | tojson}}
 </script>
