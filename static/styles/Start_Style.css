@@ -37,7 +37,6 @@ overflow-y: auto;
 .start_button {
  width: 35%;
  max-width: 532px;
- min-width: 300px;
  height: 100px;
  margin: 5px;
  transition: background 0.8s;

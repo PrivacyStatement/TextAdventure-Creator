@@ -1,73 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
 
 body {
-height: 100%;
-width: 100%;
-margin: 0;
-padding: 0;
-background: #FFFFFF;
-display: flex;
+ height: 100%;
+ margin: 0;
+ padding: 0;
+ background: #FFFFFF;
+ display: flex;
+ flex-direction: row;
+ overflow-y: auto;
 }
 
-h3{
- font-family: 'Julius Sans One', sans-serif;
- font-size: 100%;
- margin: 5px;
- color: rgba(123, 97, 255, 0.81);
- text-decoration-line: underline;
-}
-
-h4{
- font-family: 'Julius Sans One', sans-serif;
- font-size: 100%;
- height: 20px;
- color: rgba(123, 97, 255, 0.81);
- margin: 0px;
-}
-
-p{
- font-family: 'Julius Sans One', sans-serif;
- font-size: 100%;
- margin: 5px;
- color: rgba(123, 97, 255, 0.81);
-}
-
-input {
- width: 80%;
- height: 23px;
- border: none;
- margin-top: 3%;
-
- font-family: 'Julius Sans One', sans-serif;
- font-size: 23px;
- color: #444444;
+.shadow {
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
  }
-
-input:focus-visible {
- outline-width: 0;
- outline: none;
-}
-
-.create_game_title{
- width: 90%;
- margin: 5%;
- margin-bottom: 3%;
-}
-
-.center_objects{
- align-items: center;
- text-align: center;
-}
-
-.button_text{
- font-family: 'Julius Sans One', sans-serif;
- font-style: normal;
- font-weight: normal;
- font-size: 72px;
- line-height: 100px;
- text-align: center;
- color: #7B61FF;
-}
 
 .no_select{
  -ms-user-select: None;
@@ -76,122 +21,294 @@ input:focus-visible {
  user-select: None;
 }
 
+.center_objects{
+ align-items: center;
+ text-align: center;
+}
+
+/* ----------------------------- FIRST HTML ELEMENT ----------------------------- */
+.create_game_body {
+ margin: auto 5% auto 5%;
+ height: auto;
+ width: 40%;
+ max-height: 96%;
+ overflow-y: auto;
+ scrollbar-width: thin;
+}
+
+.create_game_body > svg{
+ width: 90%;
+ margin: 3% 5% 3% 5%;
+}
+
+.create_game_body > hr{
+ color: #7B61FF;
+ }
+
+.create_game_body > input {
+ width: 80%;
+ height: 23px;
+ border: none;
+ margin-top: 3%;
+ padding: 0px;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 23px;
+ color: #444444;
+ }
+
+.create_game_body > input:focus-visible {
+ outline-width: 0;
+ outline: none;
+}
+
+.create_game_body > img{
+ border-radius: 8px;
+ width: 80%;
+ margin: 3%;
+}
+
+.create_game_body > h3{
+ width: 80%;
+ margin: 5px auto 15px auto;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 2rem;
+ color: rgba(123, 97, 255, 0.81);
+ text-decoration-line: underline;
+}
+
+.create_game_body > p{
+ width: 80%;
+ margin: 5px auto 5px auto;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 1rem;
+ color: rgba(123, 97, 255, 0.81);
+}
+
+.create_game_body > div{
+ width: 90%;
+ margin: 15px auto;
+ transition: background 0.8s;
+ background: #FFFFFF;
+ background-position: center;
+ border: 1px solid black;
+ box-sizing: border-box;
+ border-radius: 45px;
+ display: grid;
+ place-content: center;
+}
+
+.button_create_game:hover{
+ background: #f0f0f0 radial-gradient(circle, transparent 1%, #f0f0f0 1%) center/15000%;
+ }
+
+.button_create_game:active {
+  transition: background 0s;
+  background-color: #d0d0d0;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.button_create_game svg{
+ width: 90%;
+ margin: 0 auto;
+}
+
+/* ----------------------------- SECOND HTML ELEMENT ----------------------------- */
+
 .load_game_body{
- margin: 7.5%;
- width: 35%;
- height: 99%;
- overflow-y: scroll;
+ margin: auto 5% auto 5%;
+ width: 40%;
+ height: 96%;
+ overflow-y: auto;
  background: #FFFFFF;
  border: 1px solid rgba(0, 0, 0, 0.25);
  box-sizing: border-box;
  scrollbar-width:  thin;
 }
 
-.create_game_body {
- margin: 7.5%;
- height: 80%;
- width: 30%;
+.load_game_body > svg{
+ width: 80%;
+ margin-top: 30px;
 }
 
-.pic_1 {
-border-radius: 8px;
-width: 94%;
-margin: 3%;
-margin-top: 6%;
-}
-
-.pic_2 {
- object-fit: fill;
- border-radius: 8px;
- width: 32%;
- height: 200px;
- margin: 3%;
- margin-top: 20px;
- margin-bottom: 20px;
-}
-
-.shadow {
- box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
- }
-
-.select_button{
- text-decoration: none;
- width: 44%;
- height: 100%;
- margin: 3%;
-
- background: #FFFFFF;
- border: 1px solid #E0E0EC;
- box-sizing: border-box;
- border-radius: 157.75px;
-}
+/* ----------------------------- TEMPLATE HTML ELEMENT ----------------------------- */
 
 .template_body{
  width: calc(100% - 40px);
+ height: 250px;
+ margin: 16px 20px 0px 20px;
+ box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+ border: black solid 1px;
  display: flex;
- flex-direction: row;
- height: 240px;
- margin-top: 40px;
- margin-left: 20px;
- margin-right: 20px;
 }
 
-.template_text{
+.template_body:first-of-type{
+ margin: 30px 20px 0px 20px;
+ }
+
+.template_body:last-of-type{
+ margin: 16px 20px 20px 20px;
+ }
+
+.template_body > img{
+ object-fit: fill;
+ border: black solid 1px;
+ width: 230px;
+ height: 230px;
+ margin: 9px;
+}
+
+.template_body > div{
  display: flex;
  position: relative;
  flex-direction: column;
- width: 62%;
+ width: 100%;
+ height: 250px;
+ min-width: 0px;
 }
 
-.button_load_delete{
- display: flex;
- flex-direction: row;
- border: 1px solid #000000;
- box-sizing: border-box;
- box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
- width: 30%;
- align-items: center;
- text-align: center;
- cursor: pointer;
-}
-
-.button_load_delete_text{
+.template_body > div > h4{
  font-family: 'Julius Sans One', sans-serif;
- font-size: 100%;
- margin: 5px;
-}
-
-.load_delete_div{
- display: flex;
- margin-bottom: 20px;
+ font-size: 30px;
  height: 30px;
+ width: auto;
+ color: #000;
+ margin: 20px 9px 0px 0px;
 }
 
 .info_text{
  font-family: 'Julius Sans One', sans-serif;
- font-size: 100%;
- height: 150px;
- color: rgba(123, 97, 255, 0.81);
- margin: 0px;
- margin-top: 10px;
- margin-bottom: 10px;
- line-height: 40px;
+ border: black solid 1px;
+ font-size: 1rem;
+ height: 128px;
+ width: auto;
+ color: #000;
+ margin: 20px 18px 20px 9px;
 }
 
-.popup{
- visibility: hidden;
- width: 80%;
- max-width: 1000px;
+.load_delete_div{
+ display: grid;
+ grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+ gap: 10px;
+ justify-items: left;
+ margin: 0px 20px 20px 10px;
+ height: 30px;
+ width: auto;
+}
+
+.load_delete_div > svg{
+ width: 100%;
+ cursor: pointer;
+}
+
+/* ----------------------------- POPUP HTML ELEMENT ----------------------------- */
+
+#delete_alert{
+ width: 100%;
  position: fixed;
- max-height: 600px;
- height: 80%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.6);
+ z-index: 10;
+}
+
+#delete_alert > div{
+ width: 360px;
+ position: fixed;
+ height: 112px;
  background-color: white;
  border-radius: 8px;
  left: 50%;
  top: 50%;
  transform: translate(-50%, -50%);
+ z-index: 20;
 }
 
-#Create_Game:active {
-    visibility: hidden;
+.popup_delete_text{
+    width: 260px;
+    height: 56px;
+    position: absolute;
+    bottom: 44px;
+    text-align: center;
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 20px;
+    left: 50px;
+}
+
+.delete_button{
+ width: 69px;
+ height: 36px;
+ position: absolute;
+ bottom: 7px;
+ text-align: center;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 16;
+ line-height: 200%;
+ cursor: pointer;
+}
+
+/* ----------------------------- RESPONSIVE ----------------------------- */
+
+@media only screen and (max-width: 643px) {
+  .template_body > img{
+        display: none;
+   }
+
+  .load_delete_div{
+    margin: 0px 20px 20px 20px;
+  }
+
+  .info_text{
+     margin: 20px;
+  }
+
+  .template_body > div > h4{
+    margin: 20px 20px 0px 20px;
+  }
+}
+
+@media only screen and (max-width: 1125px) and (orientation:landscape) {
+    .template_body > img{
+        display: none;
+    }
+
+    .load_delete_div{
+        margin: 0px 20px 20px 20px;
+    }
+
+  .info_text{
+     margin: 20px;
+  }
+
+  .template_body > div > h4{
+    margin: 20px 20px 0px 20px;
+  }
+}
+
+@media only screen and (orientation:portrait) {
+    body {
+     height: auto;
+     margin: 0;
+     padding: 0;
+     background: #FFFFFF;
+     display: flex;
+     flex-direction: column;
+    }
+
+/* ----------------------------- FIRST HTML ELEMENT ----------------------------- */
+    .create_game_body {
+     margin: 7.5% auto 7.5% auto;
+     height: auto;
+     overflow-y: auto;
+     max-height: none;
+     width: 70%;
+    }
+
+/* ----------------------------- SECOND HTML ELEMENT ----------------------------- */
+    .load_game_body{
+     overflow: visible;
+     height: auto;
+     width: 70%;
+     margin: 0 auto 7.5% auto;
+     margin-top: 0;
+    }
 }

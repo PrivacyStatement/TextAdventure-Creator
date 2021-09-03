@@ -254,6 +254,51 @@ body {
  cursor: pointer;
 }
 
+/* ----------------------------- SECOND POPUP HTML ELEMENT ----------------------------- */
+
+#create_alert{
+ width: 100%;
+ position: fixed;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.6);
+ z-index: 10;
+}
+
+#create_alert > div{
+ width: 50%;
+ position: fixed;
+ height: 50%;
+ background-color: white;
+ border-radius: 8px;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ z-index: 20;
+ overflow-y: auto;
+}
+
+#create_alert > div > h1{
+ text-align: left;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 16;
+ line-height: 200%;
+ margin: 10px
+}
+
+.field{
+ width: 100%;
+ text-align: left;
+ font-family: 'Julius Sans One', sans-serif;
+ font-size: 16;
+ line-height: 200%;
+ margin: 1px 0px;
+ border-top: black 1px solid;
+}
+
+.field:last-of-type{
+ border-bottom: black 1px solid;
+}
+
 /* ----------------------------- RESPONSIVE ----------------------------- */
 
 @media only screen and (max-width: 643px) {

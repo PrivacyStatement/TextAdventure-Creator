@@ -1,16 +1,5 @@
 start()
 
-function post(data, location){
-return new Promise((resolve, reject) => {
-  fetch(location,
-    {
-      method: "POST",
-      body: JSON.stringify(data)
-    }).then(response => response.json())
-    .then(data => {resolve(data)})
-})
-}
-
 function start(){
   for (let i=0; i<Save_Stats.length; i++) {
     var temp = document.getElementsByTagName("template")[0];
@@ -28,8 +17,8 @@ function alert(elements,b) {
     ele.querySelector("#FinalDelete").onclick = function() { delete_game(elements,b.toString()), document.getElementById("delete_alert").style.display = "none"};
     ele.style.display = "inherit";
   }
-  
-function deactivate_delete_alert(event, element) {
+
+function deactivate_alert(event, element) {
     if (event.target != element) {
       event.stopPropagation();
       return;
@@ -39,21 +28,11 @@ function deactivate_delete_alert(event, element) {
     ele.style.display = "none";
 }
 
-function deactivate_create_alert(event, element) {
-    if (event.target != element) {
-      event.stopPropagation();
-      return;
-    }
-
-    var ele = document.getElementById("create_alert");
-    ele.style.display = "none";
-}
-  
 function load_game(a) {
   var form = document.createElement('form');
   document.body.appendChild(form);
   form.method = 'post';
-  form.action = "Game";
+  form.action = "Creator";
   var input = document.createElement('input');
   input.type = 'hidden';
   input.name = "file";
@@ -63,34 +42,14 @@ function load_game(a) {
   form.remove();
 }
 
-async function delete_game(elements, file){
+function delete_game(elements, file){
   var data = { delete: file.toString(), mode: "delete" };
-  var return_value = await post(data, "/Load_Game_Post");
-  if (return_value["success"]) {
+  fetch("/Load_Creator_Post",
+  {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(response => response.json())
+  .then(data => { if (data["success"]) {
     elements.parentElement.parentElement.parentElement.remove();
-  }
-}
-
-async function select_game(){
-
-    var data = { mode: "select" };
-    var return_value = await post(data, "/Load_Game_Post");
-
-    if (return_value["success"]){
-    var ele = document.getElementById("create_alert");
-    var temp = document.getElementsByTagName("template")[1];
-    var field = document.getElementsByClassName("field");
-    while(field.length > 0){
-        field[0].remove();
-    }
-    ele.style.display = "inherit";
-    for (let i=0; i<return_value["templates"].length; i++) {
-      temp.content.querySelector("div").textContent = return_value["templates"][i]["title"]
-      ele.children[0].appendChild(temp.content.cloneNode(true))
-    }
-  }
-}
-
-function create_game(){
-console.log("create")
+  } })
 }
