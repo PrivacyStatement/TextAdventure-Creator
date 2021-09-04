@@ -123,12 +123,21 @@ def main_Game():
             return jsonify(success=True, templates=Save_Template())
         except:
             return jsonify(success=False)
+    def create(file):
+        files = os.listdir("Save_Games")
+        print(file,files)
+        if not (file in files):
+            return jsonify(success=True,name="hallo.json")
+        else:
+            return jsonify(success=False, name=False)
 
     if request.method == 'POST':
         if str(request.get_json(force=True)["mode"]) == "delete":
             return delete()
-        if str(request.get_json(force=True)["mode"]) == "select":
+        elif str(request.get_json(force=True)["mode"]) == "select":
             return select()
+        elif str(request.get_json(force=True)["mode"]) == "create":
+            return create(str(request.get_json(force=True)["location"]))
     return jsonify(success=False, mode = f"The mode {str(request.get_json(force=True)['mode'])} is not available or a wrong method was used")
 
 @app.route("/Load_Creator_Post", methods=['GET','POST'])
