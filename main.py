@@ -13,11 +13,14 @@ def Save_Stats():
     for i in files:
         if i.split(".")[-1] == "json":
             with open("Save_Games/" + str(i), 'r') as json_file:
-                json_data = json.load(json_file)
                 try:
-                    Save_Stats.append({"title": json_data["Settings"]["titel"], "img": json_data["Settings"]["img"],
-                                       "des": json_data["Settings"]["description"], "location": i})
-                except (TypeError, KeyError):
+                    json_data = json.load(json_file)
+                    try:
+                        Save_Stats.append({"title": json_data["Settings"]["titel"], "img": json_data["Settings"]["img"],
+                                           "des": json_data["Settings"]["description"], "location": i})
+                    except (TypeError, KeyError):
+                        pass
+                except:
                     pass
     return Save_Stats
 
@@ -35,6 +38,14 @@ def Save_Template():
                 except (TypeError, KeyError):
                     pass
     return Save_Template
+
+# clear all special chars
+def spacial_chars(string):
+    chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+             "v", "w", "x", "y", "z", "_", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    return_val = "".join(i if i.lower() in chars else "" for i in str(string))
+    return return_val
+
 
 #-----------------------------------------------------------------------------------------
 
@@ -123,13 +134,18 @@ def main_Game():
             return jsonify(success=True, templates=Save_Template())
         except:
             return jsonify(success=False)
-    def create(file):
+    def create(file,name):
         files = os.listdir("Save_Games")
-        print(file,files)
-        if not (file in files):
-            return jsonify(success=True,name="hallo.json")
-        else:
-            return jsonify(success=False, name=False)
+        new_name = f"{spacial_chars(name)}.json"
+        if not (new_name in files):
+            try:
+                with open("Save_Games/" + new_name, 'w') as new_file:
+                    with open("game templates/" + file, 'r') as text:
+                        new_file.write(json.dumps(json.load(text)))
+                return jsonify(success=True,name=new_name)
+            except:
+                pass
+        return jsonify(success=False, name=False)
 
     if request.method == 'POST':
         if str(request.get_json(force=True)["mode"]) == "delete":
@@ -137,7 +153,7 @@ def main_Game():
         elif str(request.get_json(force=True)["mode"]) == "select":
             return select()
         elif str(request.get_json(force=True)["mode"]) == "create":
-            return create(str(request.get_json(force=True)["location"]))
+            return create(str(request.get_json(force=True)["location"]),str(request.get_json(force=True)["name"]))
     return jsonify(success=False, mode = f"The mode {str(request.get_json(force=True)['mode'])} is not available or a wrong method was used")
 
 @app.route("/Load_Creator_Post", methods=['GET','POST'])
@@ -157,7 +173,6 @@ def main_Creator():
         return jsonify(success=True)
     def create():
         return "Gut"
-
     if request.method == 'POST':
         if str(request.get_json(force=True)["mode"]) == "delete":
             return delete()
@@ -165,4 +180,4 @@ def main_Creator():
             return create()
     return jsonify(success=False, mode = f"The mode {str(request.get_json(force=True)['mode'])} is not available or a wrong method was used")
 
-app.run(host= "0.0.0.0", port=5000)
+app.run(host= "0.0.0.0", port=5000, debug=True)

@@ -11,7 +11,7 @@ return new Promise((resolve, reject) => {
 })
 }
 
-function start(){
+async function start(){
   for (let i=0; i<Save_Stats.length; i++) {
     var temp = document.getElementsByTagName("template")[0];
     temp.content.querySelector("h4").textContent = Save_Stats[i]["title"]
@@ -20,6 +20,14 @@ function start(){
     temp.content.querySelector("#Load").setAttribute("onclick","load_game('" + Save_Stats[i]["location"] + "')");
     temp.content.querySelector("#Delete").setAttribute("onclick","alert(this,'" + Save_Stats[i]["location"] + "')");
     document.getElementById('LevelsDif').appendChild(temp.content.cloneNode(true));
+  }
+
+  var data = { mode: "select" };
+  var return_value = await post(data, "/Load_Game_Post");
+
+  if (return_value["success"]){
+    return_value["templates"][0]
+    change_create_prev(return_value["templates"][0]["img"],return_value["templates"][0]["title"],return_value["templates"][0]["des"],return_value["templates"][0]["location"])
   }
 }
 
@@ -105,22 +113,26 @@ function change_create_prev(pic, title, text, location){
 }
 
 async function create_game(location){
-  var name = document.getElementById("create_name")
-  var input_line = document.getElementById("input_line")
-  if (name.value != ""){
-    input_line.style.color = "#7B61FF";
-    name.placeholder = ""
-    name.value = ""
-    var data = { location: location.toString(), mode: "create" };
-    var return_value = await post(data, "/Load_Game_Post");
-    if (return_value["success"]){
-      load_game(return_value["name"])
-    }else{
-      name.placeholder = "name is in use"
+  const name = document.getElementById("create_name")
+  const input_line = document.getElementById("input_line")
+  switch (name.value) {
+    case "":
+      input_line.style.color = "red";
+      name.placeholder = "require"
+      break;
+    default:
+      const data = { location: location.toString(), mode: "create", name: name.value};
+      const return_value = await post(data, "/Load_Game_Post");
+      input_line.style.color = "#7B61FF";
+      name.placeholder = ""
       name.value = ""
-    }
-  }else{
-    input_line.style.color = "red";
-    name.placeholder = "require"
+      if (return_value["success"]){
+        console.log(return_value["name"])
+       /*  load_game(return_value["name"]) */
+      }else{
+        name.placeholder = "name is in use"
+        name.value = ""
+      }
+      break;
   }
 }
