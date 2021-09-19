@@ -55,7 +55,7 @@ def index():
 
 @app.route("/Load_Game")
 def Load_Game():
-    return render_template('Load_Game.html', Save_Stats=Save_Stats())
+    return render_template('Load_Game.html')
 
 @app.route("/Game", methods=['GET', 'POST'])
 def Game():
@@ -116,7 +116,8 @@ def Creator():
     return render_template('Creator.html', treeData=treeData, json_data=json_data)
 
 @app.route("/Load_Game_Post", methods=['GET','POST'])
-def main_Game():
+def Load_Game_Post():
+    #delete a game
     def delete():
         try:
             delete_file_name = str(request.get_json(force=True)["delete"]).split("/")[-1].split("\\")[-1].split(":")[-1]
@@ -129,11 +130,19 @@ def main_Game():
         except:
             return jsonify(success=False)
         return jsonify(success=True)
-    def select():
+    #respons in json format all the templates
+    def get_templates():
         try:
             return jsonify(success=True, templates=Save_Template())
         except:
             return jsonify(success=False)
+    # respons in json format all the games
+    def get_save_stats():
+        try:
+            return jsonify(success=True, templates=Save_Stats())
+        except:
+            return jsonify(success=False)
+    # create a new game of the name doesn't exist already also delete special characters
     def create(file,name):
         files = os.listdir("Save_Games")
         new_name = f"{spacial_chars(name)}.json"
@@ -150,14 +159,16 @@ def main_Game():
     if request.method == 'POST':
         if str(request.get_json(force=True)["mode"]) == "delete":
             return delete()
-        elif str(request.get_json(force=True)["mode"]) == "select":
-            return select()
+        elif str(request.get_json(force=True)["mode"]) == "get_templates":
+            return get_templates()
+        elif str(request.get_json(force=True)["mode"]) == "get_save_stats":
+            return get_save_stats()
         elif str(request.get_json(force=True)["mode"]) == "create":
             return create(str(request.get_json(force=True)["location"]),str(request.get_json(force=True)["name"]))
     return jsonify(success=False, mode = f"The mode {str(request.get_json(force=True)['mode'])} is not available or a wrong method was used")
 
 @app.route("/Load_Creator_Post", methods=['GET','POST'])
-def main_Creator():
+def Load_Creator_Post():
     def delete():
         try:
             if request.method == 'POST':
